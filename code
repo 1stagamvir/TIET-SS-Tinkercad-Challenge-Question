@@ -1,0 +1,57 @@
+const int Red = 13;
+const int Blue = 12;
+const int Orange = 11;
+
+unsigned long previousRedMillis = 0;
+unsigned long previousBlueMillis = 0;
+const long orangeInterval = 12000; 
+unsigned long previousOrangeMillis = 0;
+
+
+const long redInterval = 60000;    
+const long blueInterval = 30000;   
+void setup() {
+  pinMode(Red, OUTPUT);
+  pinMode(Blue, OUTPUT);
+  pinMode(Orange, OUTPUT);
+ 
+  Serial.begin(9600);
+}
+
+void loop() {
+  unsigned long currentMillis = millis();
+  
+  if (currentMillis - previousRedMillis >= redInterval) {
+    previousRedMillis = currentMillis;
+    
+    digitalWrite(Red, HIGH);
+    delay(1000); 
+    digitalWrite(Red, LOW);
+    
+    Serial.println("Red LED blinked");
+  }
+  
+  
+  if (currentMillis - previousBlueMillis >= blueInterval) {
+    previousBlueMillis = currentMillis;
+    
+    
+    digitalWrite(Blue, HIGH);
+    delay(2000); 
+    digitalWrite(Blue, LOW);
+    
+    Serial.println("Blue LED blinked");
+  }
+  
+  
+  if (currentMillis - previousOrangeMillis >= orangeInterval) {
+    previousOrangeMillis = currentMillis;
+    
+ 
+    digitalWrite(Orange, HIGH);
+    delay(500);
+    digitalWrite(Orange, LOW);
+    
+    Serial.println("Orange LED blinked");
+  }
+}
